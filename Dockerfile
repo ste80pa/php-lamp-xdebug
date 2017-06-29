@@ -23,6 +23,7 @@ RUN apt-get -y update\
 
 ADD xdebug_settings.ini /etc/php5/mods-available/
 ADD 000-default-laravel.conf /etc/apache2/sites-available/
+ADD 000-default-symfony.conf /etc/apache2/sites-available/
 ADD webgrind.conf /etc/apache2/sites-available/
 ADD lamp_setup.sh /bin/lamp_setup.sh
 
