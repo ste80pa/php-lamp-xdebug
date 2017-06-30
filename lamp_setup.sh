@@ -16,7 +16,7 @@ do
 done
 
 #
-# Select 
+# Select apache configuration
 #
 
 a2dissite 000-default\*

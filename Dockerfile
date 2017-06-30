@@ -1,11 +1,10 @@
-
 FROM nickistre/ubuntu-lamp:14.04
 
 ENV XDEBUG_REMOTE_HOST=172.17.0.1
 ENV XDEBUG_REMOTE_PORT=9000
 ENV SITE_TYPE='laravel'
 
-VOLUME /var/www/html/ /home/web/cachegrind/
+VOLUME /var/www/html/ /home/web/cachegrind/ /var/lib/mysql
 
 RUN apt-get -y update\
 && apt-get install -y\
@@ -37,4 +36,4 @@ RUN php5enmod xdebug_settings\
 
 CMD /bin/lamp_setup.sh
 
-EXPOSE 80 443 22
+EXPOSE 22 80 443 3306
