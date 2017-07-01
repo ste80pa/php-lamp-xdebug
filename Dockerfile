@@ -2,6 +2,7 @@ FROM nickistre/ubuntu-lamp:14.04
 
 ENV XDEBUG_REMOTE_HOST=172.17.0.1
 ENV XDEBUG_REMOTE_PORT=9000
+ENV XDEBUG_PROFILER_ENABLE=1
 ENV SITE_TYPE='laravel'
 
 VOLUME /var/www/html/ /home/web/cachegrind/ /var/lib/mysql
@@ -20,6 +21,7 @@ RUN apt-get -y update\
 && rm -f /tmp/installer\
 && chown -R www-data:www-data /home/web/
 
+ADD supervisord.conf /etc/supervisord.conf
 ADD xdebug_settings.ini /etc/php5/mods-available/
 ADD 000-default-laravel.conf /etc/apache2/sites-available/
 ADD 000-default-symfony.conf /etc/apache2/sites-available/
@@ -34,6 +36,6 @@ RUN php5enmod xdebug_settings\
 && a2dissite 000-default\
 && a2ensite 000-default-laravel
 
-CMD /bin/lamp_setup.sh
+CMD ["/usr/bin/supervisord" , "-c" , "/etc/supervisord.conf"]
 
 EXPOSE 22 80 443 3306
