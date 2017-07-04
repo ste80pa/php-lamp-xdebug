@@ -10,6 +10,8 @@ VOLUME /var/www/html/ /home/web/cachegrind/ /var/lib/mysql
 RUN apt-get -y update\
 && apt-get install -y\
     php5-xdebug\
+    php5-mcrypt\
+    php5-curl\
     crudini\
     graphviz\
     git\
@@ -29,6 +31,8 @@ ADD webgrind.conf /etc/apache2/sites-available/
 ADD lamp_setup.sh /bin/lamp_setup.sh
 
 RUN php5enmod xdebug_settings\
+&& php5enmod mcrypt\
+&& php5enmod curl\
 && chmod 755 /bin/lamp_setup.sh\
 && a2enmod actions\
 && a2enmod rewrite\
