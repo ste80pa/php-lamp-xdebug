@@ -7,11 +7,20 @@ ENV SITE_TYPE='laravel'
 
 VOLUME /var/www/html/ /home/web/cachegrind/ /var/lib/mysql
 
-RUN apt-get -y update\
-&& apt-get install -y\
-    php5-xdebug\
-    php5-mcrypt\
-    php5-curl\
+RUN export LC_ALL=C.UTF-8\
+&& apt-get install -y python-software-properties software-properties-common\
+&& add-apt-repository -y ppa:ondrej/php\
+&& apt-get update\  
+&& apt install -y\
+    php5.6\
+	php5.6-xml\
+	php5.6-mbstring\
+	php5.6-dom\
+	php5.6-gmp\
+	php5.6-mcrypt\
+	php5.6-pdo-mysql\
+	php5.6-xdebug\
+    php5.6-curl\
     crudini\
     graphviz\
     git\
