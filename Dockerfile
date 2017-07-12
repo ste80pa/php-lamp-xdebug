@@ -13,13 +13,13 @@ RUN export LC_ALL=C.UTF-8\
 && apt-get update\  
 && apt install -y\
     php5.6\
-	php5.6-xml\
-	php5.6-mbstring\
-	php5.6-dom\
-	php5.6-gmp\
-	php5.6-mcrypt\
-	php5.6-pdo-mysql\
-	php5.6-xdebug\
+    php5.6-xml\
+    php5.6-mbstring\
+    php5.6-dom\
+    php5.6-gmp\
+    php5.6-mcrypt\
+    php5.6-pdo-mysql\
+    php5.6-xdebug\
     php5.6-curl\
     crudini\
     graphviz\
