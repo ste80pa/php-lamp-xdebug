@@ -10,22 +10,22 @@ The image comes  with __WebGrind__ pre-installed <https://github.com/jokkedk/web
 
 ### PHP ###
 
-* PHP 5.5.9-1
-* Zend Engine v2.5.0
-* Zend OPcache v7.0.3
-* Xdebug v2.2.3
+* PHP 7.1.11-0
+* Zend Engine v3.1.0
+* Zend OPcache v7.1.11-0
+* Xdebug v2.5.5
 
-### MYSQL ###
+### MARIADB ###
 
-* MySql 5.5.55
+* MariaDB Ver 15.1 Dristrib 10.1.25 using readline 5.2
 
 ### APACHE ###
 
-* Apache/2.4.7
+* Apache/2.4.29
 
 ### COMPOSER ###
 
-* Composer 1.4.2
+* Composer 1.6.2
 
 ## Environment Variables ##
 
