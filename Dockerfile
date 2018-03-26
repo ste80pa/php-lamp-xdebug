@@ -19,16 +19,18 @@ RUN export LC_ALL=C.UTF-8\
     crudini\
     graphviz\
     git\
+    zip\
     wget2\
-    php7.1\
-    php7.1-xml\
-    php7.1-mbstring\
-    php7.1-dom\
-    php7.1-gmp\
-    php7.1-mcrypt\
-    php7.1-pdo-mysql\
-    php7.1-xdebug\
-    php7.1-curl\
+    php\
+    php-xml\
+    php-mbstring\
+    php-dom\
+    php-gmp\
+#    php-mcrypt\
+    php-pdo-mysql\
+    php-xdebug\
+    php-curl\
+    php-zip\
 && mysql_install_db\
 && mkdir -p /home/web/webgrind\
 && mkdir -p /home/web/cachegrind/\
@@ -36,7 +38,10 @@ RUN export LC_ALL=C.UTF-8\
 && wget2 -O /tmp/installer https://getcomposer.org/installer\
 && php /tmp/installer --filename=composer --install-dir=/bin\
 && rm -f /tmp/installer\
-&& chown -R www-data:www-data /home/web/
+&& chown -R www-data:www-data /home/web/\
+&& mkdir -p /etc/ssl/private\
+&& chmod 700 /etc/ssl/private\
+&& openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -subj '/CN=www.mydom.com/O=My Company Name LTD./C=US' -keyout /etc/ssl/private/php-lamp-xdebug-selfsigned.key -out /etc/ssl/certs/php-lamp-xdebug-selfsigned.crt
 
 ADD supervisord.conf /etc/supervisord.conf
 ADD xdebug_settings.ini /etc/php/7.1/mods-available
