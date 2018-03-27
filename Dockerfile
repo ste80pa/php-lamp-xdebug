@@ -9,8 +9,7 @@ ENV DEBIAN_FRONTEND='noninteractive'
 VOLUME /var/www/html/ /home/web/cachegrind/ /var/lib/mysql
 
 RUN export LC_ALL=C.UTF-8\
-&& apt-get update\
-&& apt-get upgrade -y\  
+&& apt-get update\  
 && apt install -y\
     apt-utils\
     supervisor\
@@ -26,7 +25,8 @@ RUN export LC_ALL=C.UTF-8\
     php-mbstring\
     php-dom\
     php-gmp\
-#    php-mcrypt\
+    php-apcu\
+    php-intl\
     php-pdo-mysql\
     php-xdebug\
     php-curl\
@@ -41,17 +41,16 @@ RUN export LC_ALL=C.UTF-8\
 && chown -R www-data:www-data /home/web/\
 && mkdir -p /etc/ssl/private\
 && chmod 700 /etc/ssl/private\
-&& openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -subj '/CN=www.mydom.com/O=My Company Name LTD./C=US' -keyout /etc/ssl/private/php-lamp-xdebug-selfsigned.key -out /etc/ssl/certs/php-lamp-xdebug-selfsigned.crt
+&& rm -rf /var/lib/apt/lists/*
 
 ADD supervisord.conf /etc/supervisord.conf
-ADD xdebug_settings.ini /etc/php/7.1/mods-available
+ADD xdebug_settings.ini /etc/php/7.2/mods-available 
 ADD 000-default-laravel.conf /etc/apache2/sites-available/
 ADD 000-default-symfony.conf /etc/apache2/sites-available/
 ADD webgrind.conf /etc/apache2/sites-available/
 ADD lamp_setup.sh /bin/lamp_setup.sh
 
 RUN phpenmod xdebug_settings\
-&& phpenmod mcrypt\
 && phpenmod curl\
 && chmod 755 /bin/lamp_setup.sh\
 && a2enmod actions\

@@ -1,4 +1,4 @@
-Docker image for development and debugging purpose.
+Docker image for easy development and debugging purpose using a LAMP stack.
 
 Source available at <https://github.com/ste80pa/php-lamp-xdebug>.
 
@@ -65,3 +65,15 @@ The values accepted are:
 * laravel
 * symfony
 * normal
+
+### BUILD ###
+**note** *you need an internet connection to build this image because it relies on some packages fetch over the network.*
+
+Under Unix Like systems you can easily build you Docker image running
+
+`$ make build`
+
+alternatively you can run from command line
+
+`docker build  -t php-lamp-xdebug:0.3 .`
+
